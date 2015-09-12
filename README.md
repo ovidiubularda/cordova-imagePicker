@@ -1,4 +1,4 @@
-cordova-imagePicker
+cordova-obimagepicker
 ===================
 
 Cordova Plugin For Multiple Image Selection - implemented for iOS and Android 4.0 and above.
@@ -8,9 +8,8 @@ Cordova Plugin For Multiple Image Selection - implemented for iOS and Android 4.
 The plugin conforms to the Cordova plugin specification, it can be installed
 using the Cordova / Phonegap command line interface.
 
-    phonegap plugin add https://github.com/wymsee/cordova-imagePicker.git
-
-    cordova plugin add https://github.com/wymsee/cordova-imagePicker.git
+    phonegap plugin add cordova-obimagepicker
+    cordova plugin add cordova-obimagepicker
 
 
 ## Using the plugin
@@ -41,7 +40,8 @@ window.imagePicker.getPictures(
 		console.log('Error: ' + error);
 	}, {
 		maximumImagesCount: 10,
-		width: 800
+		width: 800,
+        dataurl: 0 
 	}
 );
 ```
@@ -62,7 +62,8 @@ window.imagePicker.getPictures(
     	height: int,
     	
     	// quality of resized image, defaults to 100
-    	quality: int (0-100)
+    	quality: int (0-100),
+        dataurl: 0 // 1 if you what to return image in base64 format
     };
     
 ### Note for Android Use
