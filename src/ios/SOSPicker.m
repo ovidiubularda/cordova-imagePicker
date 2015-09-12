@@ -17,6 +17,10 @@
 
 @synthesize callbackId;
 
+- (NSString *)encodeToBase64String:(UIImage *)image {
+ return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
 - (void) getPictures:(CDVInvokedUrlCommand *)command {
 	NSDictionary *options = [command.arguments objectAtIndex: 0];
 
@@ -95,7 +99,14 @@
                 result = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:[err localizedDescription]];
                 break;
             } else {
-                [resultStrings addObject:[[NSURL fileURLWithPath:filePath] absoluteString]];
+                if(self.dataurl == 0)
+                {
+                    [resultStrings addObject:[[NSURL fileURLWithPath:filePath] absoluteString]];
+                }
+                else{
+                    [resultStrings addObject:[[self encodeToBase64String:image]]];
+                }
+                
             }
         }
 
