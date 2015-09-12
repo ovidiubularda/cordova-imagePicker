@@ -104,7 +104,7 @@
                     [resultStrings addObject:[[NSURL fileURLWithPath:filePath] absoluteString]];
                 }
                 else{
-                    [resultStrings addObject:[[self encodeToBase64String:image]]];
+                    [resultStrings addObject:[self encodeToBase64String:image]];
                 }
                 
             }
