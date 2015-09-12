@@ -1,0 +1,19 @@
+{
+  "name": "cordova-obimagepicker",
+  "version": "1.0.9",
+  "description": "Cordova file picker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ovidiubularda@github.com/ovidiubularda/cordova-imagePicker.git"
+  },
+  "author": "Ovidiu Bularda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ovidiubularda/cordova-imagePicker/issues"
+  },
+  "homepage": "https://github.com/ovidiubularda/cordova-imagePicker#readme"
+}
