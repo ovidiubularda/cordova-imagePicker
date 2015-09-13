@@ -7,7 +7,7 @@
 //
 
 #import <Cordova/CDVPlugin.h>
-#import "QBImagePicker/QBImagePicker.h"
+#import "QBImagePicker.h"
 
 @interface SOSPicker : CDVPlugin <QBImagePickerControllerDelegate>
 

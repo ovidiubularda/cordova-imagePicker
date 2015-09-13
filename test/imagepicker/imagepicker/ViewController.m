@@ -53,20 +53,33 @@
     PHImageRequestOptions * imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.synchronous = YES;
     
-    for (PHAsset *asset in assets) {
-        // Do something with the asset
-        if(asset.mediaType == PHAssetMediaTypeImage)
-        {
-            [[PHImageManager defaultManager] requestImageDataForAsset:asset options:imageRequestOptions resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-                
-                UIImage *image = [UIImage imageWithData:imageData];
-                NSString *imgData = [self encodeToBase64String:image];
-                [resultStrings addObject:imageData];
-            }];
-        }
-    }
     
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        // Perform async operation
+        // Call your method/function here
+        // Example:
+        
+        for (PHAsset *asset in assets) {
+            // Do something with the asset
+            if(asset.mediaType == PHAssetMediaTypeImage)
+            {
+                [[PHImageManager defaultManager] requestImageDataForAsset:asset options:imageRequestOptions resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+                    
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    // NSString *imgData = [self encodeToBase64String:image];
+                    [resultStrings addObject:image];
+                }];
+            }
+        }
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            // Update UI
+            // Example:
+            // self.myLabel.text = result;
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        });
+    });
+    
 }
 
 - (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController

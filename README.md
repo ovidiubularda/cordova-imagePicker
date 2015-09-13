@@ -2,6 +2,7 @@ cordova-obimagepicker
 ===================
 
 Cordova Plugin For Multiple Image Selection - implemented for iOS and Android 4.0 and above.
+It can be used as a replacement for http://ngcordova.com/docs/plugins/imagePicker/
 
 ## Installing the plugin
 
@@ -39,9 +40,7 @@ window.imagePicker.getPictures(
 	}, function (error) {
 		console.log('Error: ' + error);
 	}, {
-		maximumImagesCount: 10,
-		width: 800,
-        dataurl: 0 
+		maximumImagesCount: 10
 	}
 );
 ```
@@ -49,21 +48,8 @@ window.imagePicker.getPictures(
 ### Options
 
     options = {
-        // max images to be selected, defaults to 15. If this is set to 1, upon
-    	// selection of a single image, the plugin will return it.
+        // max images to be selected, defaults to 0 (infinity)
     	maximumImagesCount: int,
-    	
-    	// max width and height to allow the images to be.  Will keep aspect
-    	// ratio no matter what.  So if both are 800, the returned image
-    	// will be at most 800 pixels wide and 800 pixels tall.  If the width is
-    	// 800 and height 0 the image will be 800 pixels wide if the source
-    	// is at least that wide.
-    	width: int,
-    	height: int,
-    	
-    	// quality of resized image, defaults to 100
-    	quality: int (0-100),
-        dataurl: 0 // 1 if you what to return image in base64 format
     };
     
 ### Note for Android Use
@@ -72,11 +58,17 @@ The plugin returns images that are stored in a temporary directory.  These image
 
 ## Libraries used
 
-#### ELCImagePicker
+#### QBImagePicker
 
-For iOS this plugin uses the ELCImagePickerController, with slight modifications for the iOS image picker.  ELCImagePicker uses the MIT License which can be found in the file LICENSE.
+For iOS this plugin uses the QBImagePicker, with slight modifications for the iOS image picker.
+QBImagePicker uses the MIT License which can be found in the file LICENSE.
 
-https://github.com/B-Sides/ELCImagePickerController
+### The following libraries are required:
+- QuartzCore.framework
+- Photos.framework
+
+
+https://github.com/questbeat/QBImagePicker
 
 #### MultiImageChooser
 

@@ -15,15 +15,25 @@
     return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
 
+- (UIImage *)imageByScalingNotCroppingForSize:(UIImage *)anImage toSize:(CGSize)frameSize {
+    return nil;
+}
+
 - (void) getPictures:(CDVInvokedUrlCommand *)command {
-	
+
+    NSDictionary *options = [command.arguments objectAtIndex: 0];
+	NSInteger maximumImagesCount = [[options objectForKey:@"maximumImagesCount"] integerValue];
+
     QBImagePickerController *imagePickerController = [QBImagePickerController new];
     imagePickerController.delegate = self;
     imagePickerController.mediaType = QBImagePickerMediaTypeAny;
     imagePickerController.allowsMultipleSelection = YES;
     imagePickerController.showsNumberOfSelectedAssets = YES;
+    imagePickerController.maximumNumberOfSelection = maximumImagesCount;
 
-    [self presentViewController:imagePickerController animated:YES completion:NULL];
+    self.callbackId = command.callbackId;
+
+    [self.viewController presentViewController:imagePickerController animated:YES completion:NULL];
 }
 
 #pragma mark - QBImagePickerControllerDelegate
@@ -34,21 +44,23 @@
     PHImageRequestOptions * imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.synchronous = YES;
     
+
     for (PHAsset *asset in assets) {
         // Do something with the asset
         if(asset.mediaType == PHAssetMediaTypeImage)
         {
             [[PHImageManager defaultManager] requestImageDataForAsset:asset options:imageRequestOptions resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-                
-                UIImage *image = [UIImage imageWithData:imageData];
-                NSString *imgData = [self encodeToBase64String:image];
-                [resultStrings addObject:imageData];
+                //NSString *encodedString = [imageData base64Encoding];
+
+                NSString *encodedString = [imageData base64EncodedStringWithOptions:0];
+                [resultStrings addObject: encodedString];
             }];
         }
     }
-    
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    
+
+    // Close view
+    [self.viewController dismissViewControllerAnimated:YES completion:NULL];
+
     //Run cordova
     CDVPluginResult* result = nil;
     result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsArray: resultStrings];
@@ -58,7 +70,7 @@
 
 - (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController
 {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self.viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
