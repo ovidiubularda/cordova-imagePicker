@@ -30,7 +30,11 @@
     imagePickerController.allowsMultipleSelection = YES;
     imagePickerController.showsNumberOfSelectedAssets = YES;
     imagePickerController.maximumNumberOfSelection = maximumImagesCount;
-
+    imagePickerController.assetCollectionSubtypes = @[
+                                                      @(PHAssetCollectionSubtypeSmartAlbumUserLibrary), // Camera Roll
+                                                      @(PHAssetCollectionSubtypeAlbumMyPhotoStream), // My Photo Stream
+                                                      @(PHAssetCollectionSubtypeSmartAlbumPanoramas), // Panoramas
+                                                      ];
     self.callbackId = command.callbackId;
 
     [self.viewController presentViewController:imagePickerController animated:YES completion:NULL];
