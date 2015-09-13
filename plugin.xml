@@ -2,7 +2,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="ro.qualitance.obimagepicker"
-  version="1.0.14">
+  version="2.0.2">
 
 	<name>ObImagePicker</name>
 	 
@@ -31,29 +31,43 @@
 		<header-file src="src/ios/SOSPicker.h" />
 		<source-file src="src/ios/SOSPicker.m" />
 
-		<header-file src="src/ios/ELCImagePicker/ELCAlbumPickerController.h" />
-		<source-file src="src/ios/ELCImagePicker/ELCAlbumPickerController.m" />
+		<header-file src="src/ios/ELCImagePicker/QBAlbumCell.h" />
+		<source-file src="src/ios/ELCImagePicker/QBAlbumCell.m" />
 
-		<header-file src="src/ios/ELCImagePicker/ELCAsset.h" />
-		<source-file src="src/ios/ELCImagePicker/ELCAsset.m" />
+		<header-file src="src/ios/ELCImagePicker/QBAlbumsViewController.h" />
+		<source-file src="src/ios/ELCImagePicker/QBAlbumsViewController.m" />
 
-		<header-file src="src/ios/ELCImagePicker/ELCAssetCell.h" />
-		<source-file src="src/ios/ELCImagePicker/ELCAssetCell.m" />
+		<header-file src="src/ios/ELCImagePicker/QBAssetCell.h" />
+		<source-file src="src/ios/ELCImagePicker/QBAssetCell.m" />
 
-		<header-file src="src/ios/ELCImagePicker/ELCAssetPickerFilterDelegate.h" />
-		<header-file src="src/ios/ELCImagePicker/ELCAssetSelectionDelegate.h" />
+		<header-file src="src/ios/ELCImagePicker/QBAssetsViewController.h" />
+		<source-file src="src/ios/ELCImagePicker/QBAssetsViewController.m" />
 
-		<header-file src="src/ios/ELCImagePicker/ELCAssetTablePicker.h" />
-		<source-file src="src/ios/ELCImagePicker/ELCAssetTablePicker.m" />
+		<header-file src="src/ios/ELCImagePicker/QBCheckmarkView.h" />
+		<source-file src="src/ios/ELCImagePicker/QBCheckmarkView.m" />
 
-		<header-file src="src/ios/ELCImagePicker/ELCImagePickerController.h" />
-		<source-file src="src/ios/ELCImagePicker/ELCImagePickerController.m" />
+		<header-file src="src/ios/ELCImagePicker/QBImagePicker.h" />
 
-		<resource-file src="src/ios/ELCImagePicker/Resources/ELCAlbumPickerController.xib" />
-		<resource-file src="src/ios/ELCImagePicker/Resources/ELCAssetPicker.xib" />
-		<resource-file src="src/ios/ELCImagePicker/Resources/ELCAssetTablePicker.xib" />
-		<resource-file src="src/ios/ELCImagePicker/Resources/Overlay.png" />
-		<resource-file src="src/ios/ELCImagePicker/Resources/Overlay@2x.png" />
+		<header-file src="src/ios/ELCImagePicker/QBImagePickerController.h" />
+		<source-file src="src/ios/ELCImagePicker/QBImagePickerController.m" />
+
+		<header-file src="src/ios/ELCImagePicker/QBSlomoIconView.h" />
+		<source-file src="src/ios/ELCImagePicker/QBSlomoIconView.m" />
+
+		<header-file src="src/ios/ELCImagePicker/QBVideoIconView.h" />
+		<source-file src="src/ios/ELCImagePicker/QBVideoIconView.m" />
+
+		<header-file src="src/ios/ELCImagePicker/QBVideoIndicatorView.h" />
+		<source-file src="src/ios/ELCImagePicker/QBVideoIndicatorView.m" />
+
+
+		<resource-file src="src/ios/ELCImagePicker/QBImagePicker.storyboard" />
+		<resource-file src="src/ios/ELCImagePicker/en.lproj/QBImagePicker.strings" />
+		<resource-file src="src/ios/ELCImagePicker/de.lproj/QBImagePicker.strings" />
+		<resource-file src="src/ios/ELCImagePicker/es.lproj/QBImagePicker.strings" />
+		<resource-file src="src/ios/ELCImagePicker/ja.lproj/QBImagePicker.strings" />
+		<resource-file src="src/ios/ELCImagePicker/zh-Hans.lproj/QBImagePicker.strings" />
+
 	</platform>
 
 	<!-- android -->
