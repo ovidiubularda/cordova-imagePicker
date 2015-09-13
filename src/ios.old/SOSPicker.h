@@ -2,16 +2,17 @@
 //  SOSPicker.h
 //  SyncOnSet
 //
-//  Created by Ovidiu Bularda
+//  Created by Christopher Sullivan on 10/25/13.
 //
 //
 
 #import <Cordova/CDVPlugin.h>
-#import "QBImagePicker/QBImagePicker.h"
+#import "ELCAlbumPickerController.h"
+#import "ELCImagePickerController.h"
 
-@interface SOSPicker : CDVPlugin <QBImagePickerControllerDelegate>
+@interface SOSPicker : CDVPlugin <ELCImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
-@property (copy) NSString* callbackId;
+@property (copy)   NSString* callbackId;
 
 - (void) getPictures:(CDVInvokedUrlCommand *)command;
 - (UIImage*)imageByScalingNotCroppingForSize:(UIImage*)anImage toSize:(CGSize)frameSize;
