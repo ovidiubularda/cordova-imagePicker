@@ -66,8 +66,8 @@
 
             // Keep aspect ratio
             if(self.width){
-                self.height = (width * imageHeight) / imageWidth;
-                newImageSize = CGSizeMake(width, height);
+                self.height = (self.width * imageHeight) / imageWidth;
+                newImageSize = CGSizeMake(self.width, self.height);
             }
             else{
                 newImageSize = CGSizeMake(imageWidth, imageHeight);

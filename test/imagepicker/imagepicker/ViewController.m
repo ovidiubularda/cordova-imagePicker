@@ -90,7 +90,6 @@
                 
                 // Resize the image
                 [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:newImageSize contentMode:PHImageContentModeAspectFit options:imageRequestOptions resultHandler:^(UIImage *result, NSDictionary *info) {
-                    
                     [resultStrings addObject:[self encodeToBase64String:result]];
                 }];
             }
