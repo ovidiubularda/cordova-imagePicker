@@ -23,6 +23,7 @@
 
     NSDictionary *options = [command.arguments objectAtIndex: 0];
 	NSInteger maximumImagesCount = [[options objectForKey:@"maximumImagesCount"] integerValue];
+    self.width = [[options objectForKey:@"width"] integerValue];
 
     QBImagePickerController *imagePickerController = [QBImagePickerController new];
     imagePickerController.delegate = self;
@@ -47,17 +48,33 @@
     NSMutableArray *resultStrings = [[NSMutableArray alloc] init];
     PHImageRequestOptions * imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.synchronous = YES;
-    
+
 
     for (PHAsset *asset in assets) {
         // Do something with the asset
         if(asset.mediaType == PHAssetMediaTypeImage)
         {
-            [[PHImageManager defaultManager] requestImageDataForAsset:asset options:imageRequestOptions resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-                //NSString *encodedString = [imageData base64Encoding];
+            //[[PHImageManager defaultManager] requestImageDataForAsset:asset options:imageRequestOptions resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+            //    NSString *encodedString = [imageData base64Encoding];
+            //    NSString *encodedString = [imageData base64EncodedStringWithOptions:0];
+            //    [resultStrings addObject: encodedString];
+            //}];
 
-                NSString *encodedString = [imageData base64EncodedStringWithOptions:0];
-                [resultStrings addObject: encodedString];
+            float imageWidth =  asset.pixelWidth;
+            float imageHeight = asset.pixelHeight;
+            CGSize newImageSize;
+
+            // Keep aspect ratio
+            if(self.width){
+                self.height = (width * imageHeight) / imageWidth;
+                newImageSize = CGSizeMake(width, height);
+            }
+            else{
+                newImageSize = CGSizeMake(imageWidth, imageHeight);
+            }
+            // Resize the image
+            [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:newImageSize contentMode:PHImageContentModeAspectFit options:imageRequestOptions resultHandler:^(UIImage *result, NSDictionary *info) {
+                [resultStrings addObject:[self encodeToBase64String:result]];
             }];
         }
     }

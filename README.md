@@ -4,6 +4,8 @@ cordova-obimagepicker
 Cordova Plugin For Multiple Image Selection - implemented for iOS and Android 4.0 and above.
 It can be used as a replacement for http://ngcordova.com/docs/plugins/imagePicker/
 
+* exports images in Base64 format
+
 ## Installing the plugin
 
 The plugin conforms to the Cordova plugin specification, it can be installed
@@ -40,7 +42,8 @@ window.imagePicker.getPictures(
 	}, function (error) {
 		console.log('Error: ' + error);
 	}, {
-		maximumImagesCount: 10
+		maximumImagesCount: 10,
+		width: 100 // Set with for image - will keep the aspect ratio
 	}
 );
 ```
@@ -50,6 +53,8 @@ window.imagePicker.getPictures(
     options = {
         // max images to be selected, defaults to 0 (infinity)
     	maximumImagesCount: int,
+    	// set with of the new returned image - will keep the aspect ratio
+    	width: int
     };
     
 ### Note for Android Use

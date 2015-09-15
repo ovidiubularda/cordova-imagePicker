@@ -1,6 +1,6 @@
 {
   "name": "cordova-obimagepicker",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "Cordova file picker",
   "main": "index.js",
   "scripts": {
